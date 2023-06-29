@@ -1,0 +1,13 @@
+# monitor const
+G = 1 / 8
+US_TO_MS = 1 / 1000
+US_TO_SEC = 1 / (1000 * 1000)
+TIMESTAMP_UNIT_US = 20000
+BYTE_TO_BITS = 8
+MTU_BYTES = 1500
+BPS_TO_MBPS = 1 / (1024 * 1024)
+HEADER_SIZE = 60
+
+# CUBIC const
+C = 0.4
+BETA = 717 / 1024
