@@ -110,23 +110,19 @@ class MonitoringAgent:
         self.caEvent = obs[13]
 
     def count_ack(self):
-
         self.ack_count += 1
 
     def count_loss(self):
-
         if not self.called_func:
             self.loss_count += 1
 
     def measure_min_rtt(self):
-
         if not self.min_rtt_us:
             self.min_rtt_us = self.lastRtt_us
         else:
             self.min_rtt_us = min(self.min_rtt_us, self.lastRtt_us)
 
-    def calculate_srtt(self):
-                
+    def calculate_srtt(self):   
         if self.srtt_us:
             self.srtt_us = (1 - constants.G) * self.srtt_us + constants.G * self.lastRtt_us
         else:
@@ -136,11 +132,7 @@ class MonitoringAgent:
         period_end = int(self.sim_time_us / constants.TIMESTAMP_UNIT_US) != self.timestamp
         self.new_monitoring_period = (self.segments_acked & period_end)
 
-
     def measure_network_performance(self):
-
-        timestamp_unit_sec = constants.TIMESTAMP_UNIT_US * constants.US_TO_SEC
-
         if not self.timestamp:
             self.timestamp = int(self.sim_time_us / constants.TIMESTAMP_UNIT_US) - 1
         self.interval_cnt = int(self.sim_time_us / constants.TIMESTAMP_UNIT_US) - self.timestamp
@@ -151,13 +143,18 @@ class MonitoringAgent:
         self.throughput_mbps = self.ack_count * packets_to_rate
         self.loss_rate_mbps = self.loss_count * packets_to_rate
 
-        for i in range(self.interval_cnt):
-            print(self.Uuid, (self.timestamp + 1 + i) * timestamp_unit_sec, "throughput", self.throughput_mbps)
-            print(self.Uuid, (self.timestamp + 1 + i) * timestamp_unit_sec, "loss_rate", self.loss_rate_mbps)
-            print(self.Uuid, (self.timestamp + 1 + i) * timestamp_unit_sec, "srtt", self.srtt_ms)
-            print(self.Uuid, (self.timestamp + 1 + i) * timestamp_unit_sec, "rtt", self.lastRtt_us)
+        ##### self.print_network_performance()
 
         self.ack_count = 0
         self.loss_count = 0
 
         self.timestamp = int(self.sim_time_us / constants.TIMESTAMP_UNIT_US)
+
+    def print_network_performance(self):
+        timestamp_unit_sec = constants.TIMESTAMP_UNIT_US * constants.US_TO_SEC
+
+        for i in range(self.interval_cnt):
+            print(self.Uuid, (self.timestamp + 1 + i) * timestamp_unit_sec, "throughput", self.throughput_mbps)
+            print(self.Uuid, (self.timestamp + 1 + i) * timestamp_unit_sec, "loss_rate", self.loss_rate_mbps)
+            print(self.Uuid, (self.timestamp + 1 + i) * timestamp_unit_sec, "srtt", self.srtt_ms)
+            print(self.Uuid, (self.timestamp + 1 + i) * timestamp_unit_sec, "rtt", self.lastRtt_us)

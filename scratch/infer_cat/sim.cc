@@ -345,6 +345,7 @@ int main (int argc, char *argv[])
                       QueueSizeValue (QueueSize (QueueSizeUnit::BYTES, size)));
 
   std::cout << "Size " << size << std::endl;
+
   
   if (queue_disc_type.compare ("ns3::PfifoFastQueueDisc") == 0)
   {

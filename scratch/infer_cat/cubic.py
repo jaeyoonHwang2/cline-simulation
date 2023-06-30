@@ -47,11 +47,14 @@ class CubicAgent:
         self.bound_cwnd_decision()
         self.calculate_pacing_rate()
         self.last_cwnd_decision = self.cwnd_decision
-        print(self.Uuid, self.simTime_us * constants.US_TO_SEC, "cwnd", self.last_cwnd_decision)
+        self.printing_decisions()
         actions = [self.pacing_rate_decision, self.cwnd_decision]
               
         return actions
     
+    def printing_decisions(self):
+        print(self.Uuid, self.simTime_us * constants.US_TO_SEC, "cwnd", self.last_cwnd_decision)
+
     def slow_start(self):
         if self.called_func: 
             self.cwnd_exponential_increase()

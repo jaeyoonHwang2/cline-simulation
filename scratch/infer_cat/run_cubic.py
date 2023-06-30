@@ -4,7 +4,7 @@ from monitor import MonitoringAgent
 from ns3gym import ns3env
     
 # config
-port = 6061
+port = 5555
 stepTime = 0.000001
 startSim = 0.00001
 simArgs = {"--duration": 30}
