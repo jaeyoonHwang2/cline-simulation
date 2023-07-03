@@ -143,7 +143,7 @@ class MonitoringAgent:
         self.throughput_mbps = self.ack_count * packets_to_rate
         self.loss_rate_mbps = self.loss_count * packets_to_rate
 
-        ##### self.print_network_performance()
+        self.print_network_performance()
 
         self.ack_count = 0
         self.loss_count = 0

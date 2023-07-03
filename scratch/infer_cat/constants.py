@@ -11,3 +11,4 @@ HEADER_SIZE = 60
 # CUBIC const
 C = 0.4
 BETA = 717 / 1024
+FAST_CONV = False

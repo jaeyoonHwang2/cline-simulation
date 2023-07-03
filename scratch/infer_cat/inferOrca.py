@@ -26,7 +26,7 @@ import sys
 from agent import Agent
 import os
 
-from tcpCubic import TcpCubic
+from cubic import CubicAgent
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import argparse
 import gym
@@ -51,7 +51,7 @@ parser.add_argument('--tb_interval', type=int, default=1)
 parser.add_argument('--train_dir', type=str, default=None)
 parser.add_argument('--mem_r', type=int, default = 123456)
 parser.add_argument('--mem_w', type=int, default = 12345)
-base_path = '~/infer_learner'
+base_path = '../../../../../infer_learner'
 job_name = 'actor'  
 
 
@@ -170,7 +170,7 @@ with tf.Graph().as_default(),\
                     h2_shape=params.dict['h2_shape'],stddev=params.dict['stddev'],mem_size=params.dict['memsize'],gamma=params.dict['gamma'],
                     lr_c=params.dict['lr_c'],lr_a=params.dict['lr_a'],tau=params.dict['tau'],PER=params.dict['PER'],CDQ=params.dict['CDQ'],
                     LOSS_TYPE=params.dict['LOSS_TYPE'],noise_type=params.dict['noise_type'],noise_exp=params.dict['noise_exp'])
-        cubicAgent = [TcpCubic() for i in range(numSenders)]
+        cubicAgent = [CubicAgent() for i in range(numSenders)]
 
         dtypes = [tf.float32, tf.float32, tf.float32, tf.float32, tf.float32]
         shapes = [[s_dim], [a_dim], [1], [s_dim], [1]]
