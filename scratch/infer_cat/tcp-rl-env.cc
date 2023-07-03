@@ -355,8 +355,13 @@ TcpEventGymEnv::GetSsThresh (Ptr<const TcpSocketState> tcb, uint32_t bytesInFlig
   else {
     m_new_ssThresh = 180;
   }
+  m_new_ssThresh = 180;
   //m_bytesInFlight
+
+  NS_LOG_UNCOND(m_new_ssThresh);
+
   Notify();
+  NS_LOG_UNCOND("Notify at SsThresh");
   
   return m_new_ssThresh;
 }
@@ -640,6 +645,7 @@ TcpTimeStepGymEnv::IncreaseWindow (Ptr<TcpSocketState> tcb, uint32_t segmentsAck
   if (!m_started) {
     m_started = true;
     Notify();
+    NS_LOG_UNCOND("Time");
     ScheduleNextStateRead();
   }
   // action

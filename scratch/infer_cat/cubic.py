@@ -77,6 +77,8 @@ class CubicAgent:
         # TRY if (self.no_first_loss & self.called_func): => if (self.no_first_loss):
         else: 
             self.pacing_rate_decision = int(1.2 * cwnd_to_pacing_rate)
+        ######  
+        self.pacing_rate_decision = int(cwnd_to_pacing_rate)
 
     def monitor_obs(self, obs):
         self.Uuid = obs[0] - 1
