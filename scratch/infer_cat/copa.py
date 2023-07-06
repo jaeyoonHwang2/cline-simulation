@@ -190,8 +190,6 @@ class copa_agent:
             self.last_cwnd_pkts = self.cwnd_pkts
             self.last_direction = self.direction_up
 
-            print (Uuid, 'velocity', obs[2] / 1000000, self.velocity)
-            print (Uuid, "sendRate", obs[2] / 1000000, (obs[14] - self.next_tx_seq) * 8 * ((obs[6] + 60) / obs[6]) / ((obs[2] - self.next_tx_time) / 1000000))
             self.next_tx_seq = obs[14]
             self.next_tx_time = obs[2]
 

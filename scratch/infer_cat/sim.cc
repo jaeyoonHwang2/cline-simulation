@@ -130,8 +130,8 @@ ChangeBW(NetDeviceContainer *dev) {
     Simulator::Schedule(Seconds(10), &ChangeBW, dev);
     }
     if (flag==1){
-    dev->Get(0)-> SetAttribute ("DataRate", StringValue ("20Mbps"));
-    dev->Get(1)-> SetAttribute ("DataRate", StringValue ("20Mbps"));
+    dev->Get(0)-> SetAttribute ("DataRate", StringValue ("50Mbps"));
+    dev->Get(1)-> SetAttribute ("DataRate", StringValue ("50Mbps"));
     outfile1 << "BW changed to 20 " <<flag<< "  Time: "<<Simulator::Now()/1000000000 <<std::endl;
     Simulator::Schedule(Seconds(10), &ChangeBW, dev);
     }
@@ -148,14 +148,14 @@ int main (int argc, char *argv[])
   uint32_t nLeaf = 3;
   std::string transport_prot = "TcpRl";
   double error_p = 0.0;
-  std::string bottleneck_bandwidth = "100Mbps";//"130Mbps";//"2Mbps";//
+  std::string bottleneck_bandwidth = "50Mbps";//"130Mbps";//"2Mbps";//
   std::string bottleneck_delay = "0.001ms";
   std::string access_bandwidth = "20000Mbps";//"10Mbps";//
   std::string access_delay = "5ms";
   std::string prefix_file_name = "TcpVariantsComparison";
   uint64_t data_mbytes = 0;
   uint32_t mtu_bytes = 150;//400;
-  double duration = 100.0;
+  double duration = 50.0;
   uint32_t run = 0;
   bool flow_monitor = false;
   bool sack = true;
@@ -309,10 +309,10 @@ int main (int argc, char *argv[])
   //devices2 = d.GetRibottleneckRouterght()->GetDevice(0);  // 0 is the router
 
   //////
-  // NetDeviceContainer *bottleneckRouter;
-  // bottleneckRouter = &d.m_routerDevices;
-  // bottleneckRouter->Get(0)->SetAttribute  ("DataRate", StringValue ("10Mbps"));
-  // bottleneckRouter->Get(1)->SetAttribute  ("DataRate", StringValue ("10Mbps"));
+  NetDeviceContainer *bottleneckRouter;
+  bottleneckRouter = &d.m_routerDevices;
+  bottleneckRouter->Get(0)->SetAttribute  ("DataRate", StringValue ("50Mbps"));
+  bottleneckRouter->Get(1)->SetAttribute  ("DataRate", StringValue ("50Mbps"));
 
 
   // Install IP stack
@@ -391,7 +391,7 @@ int main (int argc, char *argv[])
 
   for (uint32_t i = 0; i < nLeaf; ++i)
   {
-  start_t[i] = start_time + 0.001 + 3 * i;
+  start_t[i] = start_time + 0.001 + 10 * i;
   stop_t[i] = stop_time - 0.1;
   }
   //////
@@ -425,8 +425,8 @@ int main (int argc, char *argv[])
   Simulator::Stop (Seconds (stop_time));
   ThroughputMonitor(&flowHelper, allMon);
   /////
-  //Simulator::Schedule(Seconds(10), &ChangeBW, bottleneckRouter); //change pointToPoint
-  Simulator::Schedule(Seconds(0.04),&ThroughputMonitor,&flowHelper, allMon); 
+  Simulator::Schedule(Seconds(30), &ChangeBW, bottleneckRouter); //change pointToPoint
+  //Simulator::Schedule(Seconds(0.04),&ThroughputMonitor,&flowHelper, allMon);
   
   Simulator::Run ();
 

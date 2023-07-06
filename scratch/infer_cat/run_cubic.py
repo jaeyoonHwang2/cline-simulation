@@ -7,7 +7,7 @@ from ns3gym import ns3env
 port = 5555
 stepTime = 0.000001
 startSim = 0.00001
-simArgs = {"--duration": 100}
+simArgs = {"--duration": 50}
 num_senders = 3
 
 # variables
@@ -27,11 +27,7 @@ while True:
 
     srtt_sec, min_rtt_us = monitoring_agents[Uuid].monitor_network(obs)
     actions = cubic_senders[Uuid].get_action(obs, srtt_sec, min_rtt_us)
-
-    if not obs[11]:  # for loss debug
-        obs, reward, done, info = envNs3.step(actions)
-    else:
-        obs, reward, done, info = envNs3.step(actions)
+    obs, reward, done, info = envNs3.step(actions)
 
     if done:
 

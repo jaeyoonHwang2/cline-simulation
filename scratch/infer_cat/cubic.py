@@ -4,11 +4,11 @@ import constants
 class CubicAgent:
 
     def __init__(self):
-        
+
         self.new_valid_timestamp = False
         self.slow_start_phase = True
         self.max_cwnd = 0
-        self.epoch_start = 0   
+        self.epoch_start = 0
         self.target = 0
         self.K = 0
         self.origin_point = 0
@@ -29,7 +29,6 @@ class CubicAgent:
         self.srtt_sec = 0
         self.mss_to_mtu = 0
         self.first_loss = True
-        
 
     def get_action(self, obs, srtt_sec, min_rtt_us):
         self.min_rtt_us = min_rtt_us
@@ -40,7 +39,7 @@ class CubicAgent:
         if not self.called_func: # packet loss       
             self.slow_start_phase = False
 
-        if self.segments_acked: 
+        if self.segments_acked:
             if self.slow_start_phase:
                 self.slow_start()
             else:
@@ -51,20 +50,18 @@ class CubicAgent:
         self.last_cwnd_decision = self.cwnd_decision
         self.print_decisions()
         actions = [self.pacing_rate_decision, self.cwnd_decision]
-              
+
         return actions
-    
+
     def print_decisions(self):
         print(self.Uuid, self.simTime_us * constants.US_TO_SEC, "cwnd", self.last_cwnd_decision)
-        print(self.Uuid, self.simTime_us * constants.US_TO_SEC, "max_cwnd", self.max_cwnd)
-        print(self.Uuid, self.simTime_us * constants.US_TO_SEC, "target", self.target)
 
     def slow_start(self):
         self.cwnd_increase_ss()
         self.calculate_pacing_rate_ss()
 
     def congestion_avoidance(self):
-        if self.called_func: 
+        if self.called_func:
             self.cwnd_increase_ca()
         else:  # packet loss
             self.cwnd_reduction()
@@ -105,16 +102,15 @@ class CubicAgent:
         self.epoch_start = 0
 
     def config_target_equation(self):
-        self.epoch_start = self.simTime_us  
-        
+        self.epoch_start = self.simTime_us
+
         if self.last_cwnd_decision <= self.max_cwnd:
             self.K = ((self.max_cwnd * (1 - constants.BETA)) / (self.segment_size * constants.C)) ** (1 / 3)
             self.origin_point = self.max_cwnd / self.segment_size
-            print(self.Uuid, self.simTime_us * constants.US_TO_SEC, "concave", self.last_cwnd_decision)
-        else:    
+        else:
             self.K = 0
             self.origin_point = self.observed_cwnd / self.segment_size
-            print(self.Uuid, self.simTime_us * constants.US_TO_SEC, "convex", self.last_cwnd_decision)
+
     def calculate_target_equation(self):
         t = (self.simTime_us + self.min_rtt_us - self.epoch_start) * constants.US_TO_SEC
         self.target = self.origin_point + constants.C * ((t - self.K)**3)
@@ -128,19 +124,19 @@ class CubicAgent:
 
     def cwnd_increase_ss(self):
         self.cwnd_decision = int(self.last_cwnd_decision + self.segment_size)
-    
+
     def cwnd_increase_ca(self):
         if self.epoch_start <= 0:
             self.config_target_equation()
         self.calculate_target_equation()
         self.calculate_cnt_from_target()
         self.calculate_cwnd_from_cnt()
-        
+
     def calculate_cwnd_from_cnt(self):
         if self.cWnd_cnt > self.cnt:
             self.cwnd_decision = self.last_cwnd_decision + self.segment_size
             self.cWnd_cnt = 0
-        else: 
+        else:
             self.cwnd_decision = self.last_cwnd_decision
             self.cWnd_cnt += 1
         

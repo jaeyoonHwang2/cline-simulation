@@ -7,6 +7,13 @@ BYTE_TO_BITS = 8
 MTU_BYTES = 1500
 BPS_TO_MBPS = 1 / (1024 * 1024)
 HEADER_SIZE = 60
+SEGMENT_SIZE = 90
+
+# ORCA const
+MTP = 20000
+
+# COPA const
+BASE_RTT = 0.02
 
 # CUBIC const
 C = 0.4
