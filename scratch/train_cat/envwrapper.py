@@ -53,6 +53,7 @@ class TcpEnvWrapper(TcpEventBased):
         self.terminal = False
         self.error_code = True
         self.iteration = 0
+        self.sim_time = 0
 
         self.new_mtp = True
 
@@ -63,7 +64,7 @@ class TcpEnvWrapper(TcpEventBased):
 
         self.action = [0, 0]
 
-    def reset(self, s_dim):
+    def reset(self, s_dim, eval_=True):
 
         self.max_bw = 0.0
         self.max_cwnd = 0.0
@@ -94,6 +95,7 @@ class TcpEnvWrapper(TcpEventBased):
         self.terminal = False
         self.error_code = True
         # self.iteration = 0
+        # self.sim_time = 0
 
         self.new_mtp = True
 
@@ -117,17 +119,18 @@ class TcpEnvWrapper(TcpEventBased):
     def increase_iteration(self):
         self.iteration += 1
 
-    def network_monitor_per_ack(self, obs):
+    def network_monitor_per_ack(self, obs, iteration, sim_time):
         self.obs = obs
         self.Uuid = obs[0] - 1
         self.ack_count += 1
         if not (self.obs[11]):
             self.loss_count += 1
         self.rtt_sum_ms += self.obs[9] / 1000
-        self.iteration += 1
+        self.iteration = iteration
+        self.sim_time =  sim_time
         self.min_rtt_monitor()
         self.srtt_monitor()
-        print(self.Uuid, obs[2] * constants.US_TO_SEC, "rtt", self.obs[9] / 1000)
+        print(self.Uuid, obs[2] * constants.US_TO_SEC + self.iteration * constants.TIMESTAMP_UNIT_US * constants.US_TO_SEC, "rtt", self.obs[9] / 1000)
 
         return self.srtt_ms / 1000, self.min_rtt_ms * 1000
 

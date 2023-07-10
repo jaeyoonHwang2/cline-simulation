@@ -5,6 +5,8 @@ import numpy as np
 import random
 import logging
 import socket
+import json
+import time
 
 from agent import Agent
 from cubic import CubicAgent
@@ -22,6 +24,10 @@ parser.add_argument('--mode', type=str, choices=['inference', 'training'], requi
 parser.add_argument('--role', type=str, choices=['learner', 'actor'], required=True, help='learner / actor')
 parser.add_argument('--task', type=int, required=True)
 
+# parameters for config
+sim_time = 20
+start_sim = 0.0001
+step_time = 0.0001
 
 global config
 config = parser.parse_args()
@@ -36,15 +42,16 @@ else:  # 'training
     actor_socket.connect((HOST, PORT))
     print("Actor socket connected to learner")
 
+port = 5000 + config.task
+
 # parameters from parser
 global params
 params = Params(os.path.join(base_path, 'params.json'))
 
-# parameters for config
-startSim = 0.0001
-stepTime = 0.0001
-port = 5000 + config.task
-simArgs = {"--duration": 20, }
+if config.mode == 'inference':
+    simArgs = {"--duration": sim_time, }
+else:
+    simArgs = {"--duration": params.dict['simTime'], }
 
 # monitoring variables
 num_senders = 1
@@ -59,7 +66,7 @@ if config.mode == 'inference':
     filters = []
 
 else:  # 'training'
-    local_job_device = '/job:%s/task:%d' % (config.job_name, config.task)
+    local_job_device = '/job:%s/task:%d' % (config.role, config.task)
     shared_job_device = '/job:learner/task:0'
     is_learner = config.role == 'learner'
     global_variable_device = shared_job_device + '/cpu'
@@ -102,7 +109,7 @@ with tf.Graph().as_default(), tf.device(local_job_device + '/cpu'):
         queue = tf.FIFOQueue(10000, dtypes, shapes, shared_name="rp_buf")
 
         env = [TcpEnvWrapper(s_dim, params, use_normalizer=params.dict['use_normalizer']) for i in range(num_senders)]
-        envNs3 = ns3env.Ns3Env(port=port, stepTime=stepTime, startSim=startSim, simSeed=12, simArgs=simArgs, debug=False)
+        envNs3 = ns3env.Ns3Env(port=port, stepTime=step_time, startSim=start_sim, simSeed=12, simArgs=simArgs, debug=False)
     
     for i in range(params.dict['num_actors']):
     
@@ -153,7 +160,7 @@ with tf.Graph().as_default(), tf.device(local_job_device + '/cpu'):
         slow_start = [True for i in range(num_senders)]
 
         for i in range(num_senders):
-            env[i].reset()
+            env[i].reset(s_dim)
             env[i].init_state_history()
             a_init = agent.get_action(env[i].s0_rec_buffer, not config.eval)
             env[i].agent_action_to_alpha(a_init)
@@ -165,7 +172,7 @@ with tf.Graph().as_default(), tf.device(local_job_device + '/cpu'):
             if not obs[11]:
                 slow_start[Uuid] = False
 
-            srtt_sec, min_rtt_us = env[Uuid].network_monitor_per_ack(obs, iteration)
+            srtt_sec, min_rtt_us = env[Uuid].network_monitor_per_ack(obs, iteration, sim_time)
 
             if env[Uuid].is_this_new_mtp():  # new MTP
                 env[Uuid].calculate_network_stats_per_mtp()
@@ -182,6 +189,14 @@ with tf.Graph().as_default(), tf.device(local_job_device + '/cpu'):
                         a_s1: env[Uuid].s1_rec_buffer, a_terminal: np.array([env[Uuid].terminal], np.float)}
                     if not config.eval:
                         mon_sess.run(actor_op, feed_dict=fd)
+
+                    if config.mode == 'training':
+                        if ((env[Uuid].epoch_for_whole % params.dict['numSample']) == 0):
+                            actor_socket.send(json.dumps({"Wait": 1}).encode())
+                            print("Waiting for learner to update", time.time())
+                            json.loads(actor_socket.recv(1024).decode()).get("Free")
+                            print("Learner has updated", time.time())
+
                     env[Uuid].agent_action_to_alpha(a1)
                     env[Uuid].update_states_history()
                     env[Uuid].print_orca_status()
@@ -195,9 +210,9 @@ with tf.Graph().as_default(), tf.device(local_job_device + '/cpu'):
             else:
                 orca_action = cubic_action
 
-            print(Uuid, obs[2] / 1000000 + iteration * params.dict['simTime'], "CUBIC_CWND",cubic_action[1])
-            print(Uuid, obs[2] / 1000000 + iteration * params.dict['simTime'], "ORCA_ALPHA", env[Uuid].alpha)
-            print(Uuid, obs[2] / 1000000 + iteration * params.dict['simTime'], "ORCA_CWND", orca_action[1])
+            print(Uuid, obs[2] / 1000000 + iteration * sim_time, "CUBIC_CWND",cubic_action[1])
+            print(Uuid, obs[2] / 1000000 + iteration * sim_time, "ORCA_ALPHA", env[Uuid].alpha)
+            print(Uuid, obs[2] / 1000000 + iteration * sim_time, "ORCA_CWND", orca_action[1])
 
             obs, reward, done, info = envNs3.step(orca_action)
 
@@ -209,6 +224,4 @@ with tf.Graph().as_default(), tf.device(local_job_device + '/cpu'):
                 break
         
         if config.mode == 'inference':
-                
-                print("The run is completely over")
                 break

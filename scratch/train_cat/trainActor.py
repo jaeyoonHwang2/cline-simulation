@@ -38,7 +38,7 @@ import datetime
 import signal
 import pickle
 from utils import logger, Params
-from envwrapper import Env_Wrapper, TCP_Env_Wrapper
+from envwrapper import TcpEnvWrapper
 import json
 from ns3gym import ns3env
 import math
@@ -52,7 +52,7 @@ parser.add_argument('--tb_interval', type=int, default=1)
 parser.add_argument('--train_dir', type=str, default=None)
 parser.add_argument('--mem_r', type=int, default = 123456)
 parser.add_argument('--mem_w', type=int, default = 12345)
-base_path = '~/train_learner'
+base_path = '../../../../../train_learner'
 job_name = 'actor'  
 
 # Connect sockets to the learner for (multi-actors sync.)
