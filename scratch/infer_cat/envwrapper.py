@@ -33,7 +33,7 @@ class TcpEnvWrapper(TcpEventBased):
             _ = self.normalizer.load_stats()
 
         # updating part
-        self.alpha = 0
+        self.alpha = 1
         self.last_agent_decision = 0
         self.ack_count = 0
         self.loss_count = 0
@@ -52,6 +52,7 @@ class TcpEnvWrapper(TcpEventBased):
         self.Uuid = 0
         self.terminal = False
         self.error_code = True
+        self.iteration = 0
 
         self.new_mtp = True
 
@@ -62,12 +63,59 @@ class TcpEnvWrapper(TcpEventBased):
 
         self.action = [0, 0]
 
+    def reset(self, s_dim):
+
+        self.max_bw = 0.0
+        self.max_cwnd = 0.0
+        self.max_smp = 0.0
+        self.min_del = 9999999.0
+
+        self.obs = np.zeros(15)
+        self.z0 = np.zeros(15)
+
+        # updating part
+        self.alpha = 1
+        self.last_agent_decision = 0
+        self.ack_count = 0
+        self.loss_count = 0
+        self.rtt_sum_ms = 0
+        self.min_rtt_ms = 0
+        self.srtt_ms = 0
+        self.timestamp = 0
+        self.interval_cnt = 0
+        self.throughput = 0
+        self.loss_rate = 0
+        self.avg_rtt_ms = 0
+        self.epoch_for_whole = 0
+        self.epoch_for_this_epi = 0
+        self.reward = 0
+        self.ret = 0
+        self.Uuid = 0
+        self.terminal = False
+        self.error_code = True
+        # self.iteration = 0
+
+        self.new_mtp = True
+
+        self.s0 = np.zeros(s_dim)
+        self.s1 = np.zeros(s_dim)
+        self.s0_rec_buffer = np.zeros(s_dim)
+        self.s1_rec_buffer = np.zeros(s_dim)
+
+        self.action = [0, 0]
+
+        self.obs_to_state()
+        self.s0, delay_, self.reward, error_code = self.get_state(evaluation=eval_)
+
     def handler_term(self):
         print("python program terminated usking Kill -15")
         if self.use_normalizer:
             print("save stats by kill -15")
             self.normalizer.save_stats()
         sys.exit(0)
+
+    def increase_iteration(self):
+        self.iteration += 1
 
     def network_monitor_per_ack(self, obs):
         self.obs = obs
@@ -76,6 +124,7 @@ class TcpEnvWrapper(TcpEventBased):
         if not (self.obs[11]):
             self.loss_count += 1
         self.rtt_sum_ms += self.obs[9] / 1000
+        self.iteration += 1
         self.min_rtt_monitor()
         self.srtt_monitor()
         print(self.Uuid, obs[2] * constants.US_TO_SEC, "rtt", self.obs[9] / 1000)
@@ -118,53 +167,9 @@ class TcpEnvWrapper(TcpEventBased):
 
     def print_network_status(self):
         for i in range(self.interval_cnt):
-            print(self.Uuid, (self.timestamp + 1 + i) * 0.02, "throughput", self.throughput)
-            print(self.Uuid, (self.timestamp + 1 + i) * 0.02, "loss_rate", self.loss_rate)
-            print(self.Uuid, (self.timestamp + 1 + i) * 0.02, "srtt", self.srtt_ms)
-
-    def reset(self, s_dim):
-
-        self.max_bw = 0.0
-        self.max_cwnd = 0.0
-        self.max_smp = 0.0
-        self.min_del = 9999999.0
-
-        self.obs = np.zeros(15)
-        self.z0 = np.zeros(15)
-
-        # updating part
-        self.alpha = 1
-        self.last_agent_decision = 0
-        self.ack_count = 0
-        self.loss_count = 0
-        self.rtt_sum_ms = 0
-        self.min_rtt_ms = 0
-        self.srtt_ms = 0
-        self.timestamp = 0
-        self.interval_cnt = 0
-        self.throughput = 0
-        self.loss_rate = 0
-        self.avg_rtt_ms = 0
-        self.epoch_for_whole = 0
-        self.epoch_for_this_epi = 0
-        self.reward = 0
-        self.ret = 0
-        self.Uuid = 0
-        self.terminal = False
-        self.error_code = True
-
-        self.new_mtp = True
-
-        self.s0 = np.zeros(s_dim)
-        self.s1 = np.zeros(s_dim)
-        self.s0_rec_buffer = np.zeros(s_dim)
-        self.s1_rec_buffer = np.zeros(s_dim)
-
-        self.action = [0, 0]
-
-        state, delay_, rew0, error_code = self.get_state()
-
-        return state
+            print(self.Uuid, (self.timestamp + 1 + i) * constants.TIMESTAMP_UNIT_US * constants.US_TO_SEC, "throughput", self.throughput)
+            print(self.Uuid, (self.timestamp + 1 + i) * constants.TIMESTAMP_UNIT_US * constants.US_TO_SEC, "loss_rate", self.loss_rate)
+            print(self.Uuid, (self.timestamp + 1 + i) * constants.TIMESTAMP_UNIT_US * constants.US_TO_SEC, "srtt", self.srtt_ms)
 
     def get_dims_info(self):
         return self.params.dict['state_dim'], self.params.dict['action_dim']
@@ -285,10 +290,6 @@ class TcpEnvWrapper(TcpEventBased):
             return state, d, reward, True
         else:
             return state, 0.0, reward, False
-
-    def states_and_reward_from_init(self, eval_=True):
-        self.obs_to_state()
-        self.s0, delay_, self.reward, error_code = self.get_state(evaluation=eval_)
 
     def states_and_reward_from_last_action(self, eval_=True):
         self.obs_to_state()

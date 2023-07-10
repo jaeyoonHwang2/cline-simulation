@@ -26,7 +26,7 @@ import sys
 from agent import Agent
 import os
 
-from tcpCubic import TcpCubic
+from cubic import CubicAgent
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import argparse
 import gym
@@ -176,8 +176,7 @@ with tf.Graph().as_default(),\
                     h2_shape=params.dict['h2_shape'],stddev=params.dict['stddev'],mem_size=params.dict['memsize'],gamma=params.dict['gamma'],
                     lr_c=params.dict['lr_c'],lr_a=params.dict['lr_a'],tau=params.dict['tau'],PER=params.dict['PER'],CDQ=params.dict['CDQ'],
                     LOSS_TYPE=params.dict['LOSS_TYPE'],noise_type=params.dict['noise_type'],noise_exp=params.dict['noise_exp'])
-        cubicAgent = TcpCubic()
-
+        cubicAgent = CubicAgent()
         dtypes = [tf.float32, tf.float32, tf.float32, tf.float32, tf.float32]
         shapes = [[s_dim], [a_dim], [1], [s_dim], [1]]
         queue = tf.FIFOQueue(10000, dtypes, shapes, shared_name="rp_buf")

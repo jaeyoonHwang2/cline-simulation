@@ -2,10 +2,12 @@ CONFIRMED VER.
 
 CUBIC -> run_cubic.py (confirmed)
 COPA -> run_copa.py (confirmed)
+ORCA -> run_orca.py & cubic.py (confirmed)
 
-ORCA -> proper_orca.py & tcpCubic.py
 
-
+LEFT:
+- training actors 
+- training learners
 
 
 

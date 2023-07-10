@@ -1,4 +1,4 @@
-# project ns (3.35) configured on Thu Jun 29 18:27:55 2023 by
+# project ns (3.35) configured on Mon Jul 10 14:24:46 2023 by
 # waf 2.0.21 (abi 20, python 3060df0 on linux)
 # using ./waf configure
 #
@@ -10,7 +10,7 @@ Setting out to
 /home/nxcl/cline/ns-allinone-3.35/ns-3.35/build
 ----------------------------------------
 Checking for 'gcc' (C compiler)
-find program=['gcc', 'cc'] paths=['/home/nxcl/anaconda3/envs/backup_old_app/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='CC' -> ['/usr/bin/gcc']
+find program=['gcc', 'cc'] paths=['/home/nxcl/anaconda3/envs/cline/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='CC' -> ['/usr/bin/gcc']
 ['/usr/bin/gcc', '-dM', '-E', '-']
 out: #define __SSP_STRONG__ 3
 #define __DBL_MIN_EXP__ (-1021)
@@ -380,14 +380,14 @@ out: #define __SSP_STRONG__ 3
 #define __ATOMIC_ACQ_REL 4
 #define __ATOMIC_RELEASE 3
 
-find program=['ar'] paths=['/home/nxcl/anaconda3/envs/backup_old_app/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='AR' -> ['/usr/bin/ar']
+find program=['ar'] paths=['/home/nxcl/anaconda3/envs/cline/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='AR' -> ['/usr/bin/ar']
 /usr/bin/gcc
 ----------------------------------------
 Checking for cc version
 11.3.0
 ----------------------------------------
 Checking for 'g++' (C++ compiler)
-find program=['g++', 'c++'] paths=['/home/nxcl/anaconda3/envs/backup_old_app/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='CXX' -> ['/usr/bin/g++']
+find program=['g++', 'c++'] paths=['/home/nxcl/anaconda3/envs/cline/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='CXX' -> ['/usr/bin/g++']
 ['/usr/bin/g++', '-dM', '-E', '-']
 out: #define __SSP_STRONG__ 3
 #define __DBL_MIN_EXP__ (-1021)
@@ -757,7 +757,7 @@ out: #define __SSP_STRONG__ 3
 #define __ATOMIC_ACQ_REL 4
 #define __ATOMIC_RELEASE 3
 
-find program=['ar'] paths=['/home/nxcl/anaconda3/envs/backup_old_app/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='AR' -> ['/usr/bin/ar']
+find program=['ar'] paths=['/home/nxcl/anaconda3/envs/cline/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='AR' -> ['/usr/bin/ar']
 /usr/bin/g++
 ------------------------------------------------------
 Checking for compilation flag -Wl,--soname=foo support
@@ -788,24 +788,24 @@ boost: checking if we should define HAVE_BOOST
 boost: checking which libs are present
 ------------------------------------------------------
 Checking for program 'python'
-/home/nxcl/anaconda3/envs/backup_old_app/bin/python3
-find program=['python'] paths=['/home/nxcl/anaconda3/envs/backup_old_app/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='PYTHON' -> ['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3']
-['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3', '-c', 'import sys\ntry:\n print(sys.implementation.cache_tag)\nexcept AttributeError:\n import imp\n print(imp.get_tag())\n']
+/home/nxcl/anaconda3/envs/cline/bin/python3
+find program=['python'] paths=['/home/nxcl/anaconda3/envs/cline/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='PYTHON' -> ['/home/nxcl/anaconda3/envs/cline/bin/python3']
+['/home/nxcl/anaconda3/envs/cline/bin/python3', '-c', 'import sys\ntry:\n print(sys.implementation.cache_tag)\nexcept AttributeError:\n import imp\n print(imp.get_tag())\n']
 out: cpython-36
 
-['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3', '-c', 'import sys\nfor x in sys.version_info: print(str(x))']
+['/home/nxcl/anaconda3/envs/cline/bin/python3', '-c', 'import sys\nfor x in sys.version_info: print(str(x))']
 out: 3
 6
 13
 final
 0
 
-['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3', '-c', "from distutils.sysconfig import get_config_var, get_python_lib\n\nprint(repr(get_python_lib(standard_lib=0, prefix='/usr/local') or ''))"]
+['/home/nxcl/anaconda3/envs/cline/bin/python3', '-c', "from distutils.sysconfig import get_config_var, get_python_lib\n\nprint(repr(get_python_lib(standard_lib=0, prefix='/usr/local') or ''))"]
 out: '/usr/local/lib/python3.6/site-packages'
 
 '/usr/local/lib/python3.6/site-packages'
 
-['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3', '-c', "from distutils.sysconfig import get_config_var, get_python_lib\n\nprint(repr(get_python_lib(plat_specific=1, standard_lib=0, prefix='/usr/local') or ''))"]
+['/home/nxcl/anaconda3/envs/cline/bin/python3', '-c', "from distutils.sysconfig import get_config_var, get_python_lib\n\nprint(repr(get_python_lib(plat_specific=1, standard_lib=0, prefix='/usr/local') or ''))"]
 out: '/usr/local/lib/python3.6/site-packages'
 
 '/usr/local/lib/python3.6/site-packages'
@@ -813,61 +813,61 @@ out: '/usr/local/lib/python3.6/site-packages'
 ------------------------------------------------------
 Checking for python version >= 2.3
 3.6.13
-['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3', '-c', "from distutils.sysconfig import get_config_var, get_python_lib\n\nprint(repr(get_config_var('prefix') or ''))\nprint(repr(get_config_var('SO') or ''))\nprint(repr(get_config_var('LDFLAGS') or ''))\nprint(repr(get_config_var('LIBDIR') or ''))\nprint(repr(get_config_var('LIBPL') or ''))\nprint(repr(get_config_var('INCLUDEPY') or ''))\nprint(repr(get_config_var('Py_ENABLE_SHARED') or ''))\nprint(repr(get_config_var('MACOSX_DEPLOYMENT_TARGET') or ''))\nprint(repr(get_config_var('LDSHARED') or ''))\nprint(repr(get_config_var('CFLAGS') or ''))\nprint(repr(get_config_var('LDVERSION') or ''))"]
-out: '/home/nxcl/anaconda3/envs/backup_old_app'
+['/home/nxcl/anaconda3/envs/cline/bin/python3', '-c', "from distutils.sysconfig import get_config_var, get_python_lib\n\nprint(repr(get_config_var('prefix') or ''))\nprint(repr(get_config_var('SO') or ''))\nprint(repr(get_config_var('LDFLAGS') or ''))\nprint(repr(get_config_var('LIBDIR') or ''))\nprint(repr(get_config_var('LIBPL') or ''))\nprint(repr(get_config_var('INCLUDEPY') or ''))\nprint(repr(get_config_var('Py_ENABLE_SHARED') or ''))\nprint(repr(get_config_var('MACOSX_DEPLOYMENT_TARGET') or ''))\nprint(repr(get_config_var('LDSHARED') or ''))\nprint(repr(get_config_var('CFLAGS') or ''))\nprint(repr(get_config_var('LDVERSION') or ''))"]
+out: '/home/nxcl/anaconda3/envs/cline'
 '.cpython-36m-x86_64-linux-gnu.so'
-'-L/home/nxcl/anaconda3/envs/backup_old_app/lib -Wl,-rpath=/home/nxcl/anaconda3/envs/backup_old_app/lib -Wl,--no-as-needed -Wl,--sysroot=/'
-'/home/nxcl/anaconda3/envs/backup_old_app/lib'
-'/home/nxcl/anaconda3/envs/backup_old_app/lib/python3.6/config-3.6m-x86_64-linux-gnu'
-'/home/nxcl/anaconda3/envs/backup_old_app/include/python3.6m'
+'-L/home/nxcl/anaconda3/envs/cline/lib -Wl,-rpath=/home/nxcl/anaconda3/envs/cline/lib -Wl,--no-as-needed -Wl,--sysroot=/'
+'/home/nxcl/anaconda3/envs/cline/lib'
+'/home/nxcl/anaconda3/envs/cline/lib/python3.6/config-3.6m-x86_64-linux-gnu'
+'/home/nxcl/anaconda3/envs/cline/include/python3.6m'
 ''
 ''
-'gcc -pthread -shared -B /home/nxcl/anaconda3/envs/backup_old_app/compiler_compat -L/home/nxcl/anaconda3/envs/backup_old_app/lib -Wl,-rpath=/home/nxcl/anaconda3/envs/backup_old_app/lib -Wl,--no-as-needed -Wl,--sysroot=/'
+'gcc -pthread -shared -B /home/nxcl/anaconda3/envs/cline/compiler_compat -L/home/nxcl/anaconda3/envs/cline/lib -Wl,-rpath=/home/nxcl/anaconda3/envs/cline/lib -Wl,--no-as-needed -Wl,--sysroot=/'
 '-Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes'
 '3.6m'
 
-'/home/nxcl/anaconda3/envs/backup_old_app'
+'/home/nxcl/anaconda3/envs/cline'
 '.cpython-36m-x86_64-linux-gnu.so'
-'-L/home/nxcl/anaconda3/envs/backup_old_app/lib -Wl,-rpath=/home/nxcl/anaconda3/envs/backup_old_app/lib -Wl,--no-as-needed -Wl,--sysroot=/'
-'/home/nxcl/anaconda3/envs/backup_old_app/lib'
-'/home/nxcl/anaconda3/envs/backup_old_app/lib/python3.6/config-3.6m-x86_64-linux-gnu'
-'/home/nxcl/anaconda3/envs/backup_old_app/include/python3.6m'
+'-L/home/nxcl/anaconda3/envs/cline/lib -Wl,-rpath=/home/nxcl/anaconda3/envs/cline/lib -Wl,--no-as-needed -Wl,--sysroot=/'
+'/home/nxcl/anaconda3/envs/cline/lib'
+'/home/nxcl/anaconda3/envs/cline/lib/python3.6/config-3.6m-x86_64-linux-gnu'
+'/home/nxcl/anaconda3/envs/cline/include/python3.6m'
 ''
 ''
-'gcc -pthread -shared -B /home/nxcl/anaconda3/envs/backup_old_app/compiler_compat -L/home/nxcl/anaconda3/envs/backup_old_app/lib -Wl,-rpath=/home/nxcl/anaconda3/envs/backup_old_app/lib -Wl,--no-as-needed -Wl,--sysroot=/'
+'gcc -pthread -shared -B /home/nxcl/anaconda3/envs/cline/compiler_compat -L/home/nxcl/anaconda3/envs/cline/lib -Wl,-rpath=/home/nxcl/anaconda3/envs/cline/lib -Wl,--no-as-needed -Wl,--sysroot=/'
 '-Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes'
 '3.6m'
 
-Configuration returned from ['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3']:
-prefix = '/home/nxcl/anaconda3/envs/backup_old_app'
+Configuration returned from ['/home/nxcl/anaconda3/envs/cline/bin/python3']:
+prefix = '/home/nxcl/anaconda3/envs/cline'
 SO = '.cpython-36m-x86_64-linux-gnu.so'
-LDFLAGS = '-L/home/nxcl/anaconda3/envs/backup_old_app/lib -Wl,-rpath=/home/nxcl/anaconda3/envs/backup_old_app/lib -Wl,--no-as-needed -Wl,--sysroot=/'
-LIBDIR = '/home/nxcl/anaconda3/envs/backup_old_app/lib'
-LIBPL = '/home/nxcl/anaconda3/envs/backup_old_app/lib/python3.6/config-3.6m-x86_64-linux-gnu'
-INCLUDEPY = '/home/nxcl/anaconda3/envs/backup_old_app/include/python3.6m'
+LDFLAGS = '-L/home/nxcl/anaconda3/envs/cline/lib -Wl,-rpath=/home/nxcl/anaconda3/envs/cline/lib -Wl,--no-as-needed -Wl,--sysroot=/'
+LIBDIR = '/home/nxcl/anaconda3/envs/cline/lib'
+LIBPL = '/home/nxcl/anaconda3/envs/cline/lib/python3.6/config-3.6m-x86_64-linux-gnu'
+INCLUDEPY = '/home/nxcl/anaconda3/envs/cline/include/python3.6m'
 Py_ENABLE_SHARED = ''
 MACOSX_DEPLOYMENT_TARGET = ''
-LDSHARED = 'gcc -pthread -shared -B /home/nxcl/anaconda3/envs/backup_old_app/compiler_compat -L/home/nxcl/anaconda3/envs/backup_old_app/lib -Wl,-rpath=/home/nxcl/anaconda3/envs/backup_old_app/lib -Wl,--no-as-needed -Wl,--sysroot=/'
+LDSHARED = 'gcc -pthread -shared -B /home/nxcl/anaconda3/envs/cline/compiler_compat -L/home/nxcl/anaconda3/envs/cline/lib -Wl,-rpath=/home/nxcl/anaconda3/envs/cline/lib -Wl,--no-as-needed -Wl,--sysroot=/'
 CFLAGS = '-Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes'
 LDVERSION = '3.6m'
 
 ------------------------------------------------------
 python-config
-/home/nxcl/anaconda3/envs/backup_old_app/bin/python3-config
-find program=['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3-config', 'python3.6-config', 'python-config-3.6', 'python3.6m-config'] paths=['/home/nxcl/anaconda3/envs/backup_old_app/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='PYTHON_CONFIG' -> ['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3-config']
+/home/nxcl/anaconda3/envs/cline/bin/python3-config
+find program=['/home/nxcl/anaconda3/envs/cline/bin/python3-config', 'python3.6-config', 'python-config-3.6', 'python3.6m-config'] paths=['/home/nxcl/anaconda3/envs/cline/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='PYTHON_CONFIG' -> ['/home/nxcl/anaconda3/envs/cline/bin/python3-config']
 --------------------------------------------------------------------------
 Asking python-config for pyembed '--cflags --libs --ldflags --embed' flags
-['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3-config', '--cflags', '--libs', '--ldflags', '--embed']
-out: Usage: /home/nxcl/anaconda3/envs/backup_old_app/bin/python3-config --prefix|--exec-prefix|--includes|--libs|--cflags|--ldflags|--extension-suffix|--help|--abiflags|--configdir
+['/home/nxcl/anaconda3/envs/cline/bin/python3-config', '--cflags', '--libs', '--ldflags', '--embed']
+out: Usage: /home/nxcl/anaconda3/envs/cline/bin/python3-config --prefix|--exec-prefix|--includes|--libs|--cflags|--ldflags|--extension-suffix|--help|--abiflags|--configdir
 
 not found
 from /home/nxcl/cline/ns-allinone-3.35/ns-3.35/bindings/python: The configuration failed
 --------------------------------------------------------------------------
 Asking python-config for pyembed '--cflags --libs --ldflags' flags
-['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3-config', '--cflags', '--libs', '--ldflags']
-out: -I/home/nxcl/anaconda3/envs/backup_old_app/include/python3.6m -I/home/nxcl/anaconda3/envs/backup_old_app/include/python3.6m  -Wno-unused-result -Wsign-compare -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O3 -ffunction-sections -pipe -isystem /home/nxcl/anaconda3/envs/backup_old_app/include -fdebug-prefix-map=/home/builder/ktietz/cos6/ci_cos6/python_1622833237666/work=/usr/local/src/conda/python-3.6.13 -fdebug-prefix-map=/home/nxcl/anaconda3/envs/backup_old_app=/usr/local/src/conda-prefix -fuse-linker-plugin -ffat-lto-objects -flto-partition=none -flto -DNDEBUG -fwrapv -O3 -Wall
+['/home/nxcl/anaconda3/envs/cline/bin/python3-config', '--cflags', '--libs', '--ldflags']
+out: -I/home/nxcl/anaconda3/envs/cline/include/python3.6m -I/home/nxcl/anaconda3/envs/cline/include/python3.6m  -Wno-unused-result -Wsign-compare -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O3 -ffunction-sections -pipe -isystem /home/nxcl/anaconda3/envs/cline/include -fdebug-prefix-map=/home/builder/ktietz/cos6/ci_cos6/python_1622833237666/work=/usr/local/src/conda/python-3.6.13 -fdebug-prefix-map=/home/nxcl/anaconda3/envs/cline=/usr/local/src/conda-prefix -fuse-linker-plugin -ffat-lto-objects -flto-partition=none -flto -DNDEBUG -fwrapv -O3 -Wall
 -lpython3.6m -lpthread -ldl  -lutil -lm 
--L/home/nxcl/anaconda3/envs/backup_old_app/lib/python3.6/config-3.6m-x86_64-linux-gnu -L/home/nxcl/anaconda3/envs/backup_old_app/lib -lpython3.6m -lpthread -ldl  -lutil -lm  -Xlinker -export-dynamic
+-L/home/nxcl/anaconda3/envs/cline/lib/python3.6/config-3.6m-x86_64-linux-gnu -L/home/nxcl/anaconda3/envs/cline/lib -lpython3.6m -lpthread -ldl  -lutil -lm  -Xlinker -export-dynamic
 
 Unhandled flag '-Wno-unused-result'
 Unhandled flag '-Wsign-compare'
@@ -898,11 +898,11 @@ int main(int argc, char **argv)
 <==
 [1/2] Compiling [32mbuild/.conf_check_b367436918f7cae05acae23362c521b8/test.cpp[0m
 
-['/usr/bin/g++', '-O0', '-ggdb', '-g3', '-Wall', '-Werror', '-std=c++17', '-march=nocona', '-mtune=haswell', '-ftree-vectorize', '-fPIC', '-fstack-protector-strong', '-fno-plt', '-O3', '-ffunction-sections', '-isystem', '/home/nxcl/anaconda3/envs/backup_old_app/include', '-fdebug-prefix-map=/home/builder/ktietz/cos6/ci_cos6/python_1622833237666/work=/usr/local/src/conda/python-3.6.13', '-fdebug-prefix-map=/home/nxcl/anaconda3/envs/backup_old_app=/usr/local/src/conda-prefix', '-fuse-linker-plugin', '-ffat-lto-objects', '-flto-partition=none', '-flto', '-fwrapv', '-O3', '-I/home/nxcl/anaconda3/envs/backup_old_app/include/python3.6m', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DPYTHONDIR="/usr/local/lib/python3.6/site-packages"', '-DPYTHONARCHDIR="/usr/local/lib/python3.6/site-packages"', '-DNDEBUG', '../test.cpp', '-c', '-o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/.conf_check_b367436918f7cae05acae23362c521b8/testbuild/test.cpp.1.o']
+['/usr/bin/g++', '-O0', '-ggdb', '-g3', '-Wall', '-Werror', '-std=c++17', '-march=nocona', '-mtune=haswell', '-ftree-vectorize', '-fPIC', '-fstack-protector-strong', '-fno-plt', '-O3', '-ffunction-sections', '-isystem', '/home/nxcl/anaconda3/envs/cline/include', '-fdebug-prefix-map=/home/builder/ktietz/cos6/ci_cos6/python_1622833237666/work=/usr/local/src/conda/python-3.6.13', '-fdebug-prefix-map=/home/nxcl/anaconda3/envs/cline=/usr/local/src/conda-prefix', '-fuse-linker-plugin', '-ffat-lto-objects', '-flto-partition=none', '-flto', '-fwrapv', '-O3', '-I/home/nxcl/anaconda3/envs/cline/include/python3.6m', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DPYTHONDIR="/usr/local/lib/python3.6/site-packages"', '-DPYTHONARCHDIR="/usr/local/lib/python3.6/site-packages"', '-DNDEBUG', '../test.cpp', '-c', '-o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/.conf_check_b367436918f7cae05acae23362c521b8/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_b367436918f7cae05acae23362c521b8/testbuild/testprog[0m
 
-['/usr/bin/g++', '-fPIC', '-flto', '-Xlinker', '-export-dynamic', 'test.cpp.1.o', '-o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/.conf_check_b367436918f7cae05acae23362c521b8/testbuild/testprog', '-Wl,-Bstatic', '-Wl,-Bdynamic', '-L/home/nxcl/anaconda3/envs/backup_old_app/lib/python3.6/config-3.6m-x86_64-linux-gnu', '-L/home/nxcl/anaconda3/envs/backup_old_app/lib', '-lpython3.6m', '-lpthread', '-ldl', '-lutil', '-lm', '-lpython3.6m', '-lpthread', '-ldl', '-lutil', '-lm']
-err: lto1: fatal error: bytecode stream in file ‘/home/nxcl/anaconda3/envs/backup_old_app/lib/python3.6/config-3.6m-x86_64-linux-gnu/libpython3.6m.a’ generated with GCC compiler older than 10.0
+['/usr/bin/g++', '-fPIC', '-flto', '-Xlinker', '-export-dynamic', 'test.cpp.1.o', '-o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/.conf_check_b367436918f7cae05acae23362c521b8/testbuild/testprog', '-Wl,-Bstatic', '-Wl,-Bdynamic', '-L/home/nxcl/anaconda3/envs/cline/lib/python3.6/config-3.6m-x86_64-linux-gnu', '-L/home/nxcl/anaconda3/envs/cline/lib', '-lpython3.6m', '-lpthread', '-ldl', '-lutil', '-lm', '-lpython3.6m', '-lpthread', '-ldl', '-lutil', '-lm']
+err: lto1: fatal error: bytecode stream in file ‘/home/nxcl/anaconda3/envs/cline/lib/python3.6/config-3.6m-x86_64-linux-gnu/libpython3.6m.a’ generated with GCC compiler older than 10.0
 compilation terminated.
 lto-wrapper: fatal error: /usr/bin/g++ returned 1 exit status
 compilation terminated.
@@ -925,7 +925,7 @@ not found
 --------------------------------------------------------------------------
 Checking for program 'pkg-config'
 /usr/bin/pkg-config
-find program=['pkg-config'] paths=['/home/nxcl/anaconda3/envs/backup_old_app/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='PKGCONFIG' -> ['/usr/bin/pkg-config']
+find program=['pkg-config'] paths=['/home/nxcl/anaconda3/envs/cline/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='PKGCONFIG' -> ['/usr/bin/pkg-config']
 --------------------------------------------------------------------------
 Checking for 'gtk+-3.0 >= 3.22'
 ['/usr/bin/pkg-config', '--cflags', '--libs', 'gtk+-3.0', '>=', '3.22']
@@ -1468,7 +1468,7 @@ yes
 --------------------------------------------------------------------------
 Checking for program 'protoc'
 /usr/bin/protoc
-find program=['protoc'] paths=['/home/nxcl/anaconda3/envs/backup_old_app/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='PROTOC' -> ['/usr/bin/protoc']
+find program=['protoc'] paths=['/home/nxcl/anaconda3/envs/cline/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='PROTOC' -> ['/usr/bin/protoc']
 --------------------------------------------------------------------------
 Checking for protoc version
 3.12.4
@@ -1481,11 +1481,11 @@ Done
 --------------------------------------------------------------------------
 Checking for program 'sudo'
 /usr/bin/sudo
-find program=['sudo'] paths=['/home/nxcl/anaconda3/envs/backup_old_app/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='SUDO' -> ['/usr/bin/sudo']
+find program=['sudo'] paths=['/home/nxcl/anaconda3/envs/cline/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='SUDO' -> ['/usr/bin/sudo']
 --------------------------------------------------------------------------
 Checking for program 'valgrind'
 not found
-find program=['valgrind'] paths=['/home/nxcl/anaconda3/envs/backup_old_app/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='VALGRIND' -> None
+find program=['valgrind'] paths=['/home/nxcl/anaconda3/envs/cline/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='VALGRIND' -> None
 from /home/nxcl/cline/ns-allinone-3.35/ns-3.35: Could not find the program ['valgrind']
 --------------------------------------------------------------------------
 Checking for 'gsl'
@@ -1500,7 +1500,7 @@ from /home/nxcl/cline/ns-allinone-3.35/ns-3.35: The configuration failed
 --------------------------------------------------------------------------
 libgcrypt-config
 not found
-find program=['libgcrypt-config'] paths=['/home/nxcl/anaconda3/envs/backup_old_app/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='LIBGCRYPT_CONFIG' -> None
+find program=['libgcrypt-config'] paths=['/home/nxcl/anaconda3/envs/cline/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='LIBGCRYPT_CONFIG' -> None
 from /home/nxcl/cline/ns-allinone-3.35/ns-3.35: Could not find the program ['libgcrypt-config']
 --------------------------------------------------------------------------
 Checking for compilation flag -fstrict-aliasing support
@@ -1541,5 +1541,5 @@ ok
 --------------------------------------------------------------------------
 Checking for program 'doxygen'
 not found
-find program=['doxygen'] paths=['/home/nxcl/anaconda3/envs/backup_old_app/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='DOXYGEN' -> None
+find program=['doxygen'] paths=['/home/nxcl/anaconda3/envs/cline/bin', '/home/nxcl/anaconda3/condabin', '/home/nxcl/.local/bin', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/usr/local/games', '/snap/bin', '/snap/bin'] var='DOXYGEN' -> None
 from /home/nxcl/cline/ns-allinone-3.35/ns-3.35: Could not find the program ['doxygen']

@@ -6031,12 +6031,12 @@
   },
   {
     "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/cc_230327/tcp-rl-env.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/cc_230327/tcp-rl-env.cc.2.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/cc_230327/tcp-rl-env.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/cc_230327/tcp-rl-env.cc.3.o",
     "file": "../scratch/cc_230327/tcp-rl-env.cc"
   },
   {
     "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/train_cat/tcp-rl-env.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/train_cat/tcp-rl-env.cc.1.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/train_cat/tcp-rl-env.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/train_cat/tcp-rl-env.cc.2.o",
     "file": "../scratch/train_cat/tcp-rl-env.cc"
   },
   {
@@ -6046,32 +6046,32 @@
   },
   {
     "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/infer_cat/tcp-rl-env.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/infer_cat/tcp-rl-env.cc.4.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/infer_cat/tcp-rl-env.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/infer_cat/tcp-rl-env.cc.5.o",
     "file": "../scratch/infer_cat/tcp-rl-env.cc"
   },
   {
     "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/infer_cat/sim.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/infer_cat/sim.cc.4.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/infer_cat/sim.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/infer_cat/sim.cc.5.o",
     "file": "../scratch/infer_cat/sim.cc"
   },
   {
     "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/train_cat/sim.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/train_cat/sim.cc.1.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/train_cat/sim.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/train_cat/sim.cc.2.o",
     "file": "../scratch/train_cat/sim.cc"
   },
   {
     "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/train_cat/tcp-rl.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/train_cat/tcp-rl.cc.1.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/train_cat/tcp-rl.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/train_cat/tcp-rl.cc.2.o",
     "file": "../scratch/train_cat/tcp-rl.cc"
   },
   {
     "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/cc_230327/sim.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/cc_230327/sim.cc.2.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/cc_230327/sim.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/cc_230327/sim.cc.3.o",
     "file": "../scratch/cc_230327/sim.cc"
   },
   {
     "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/cc_230327/tcp-rl.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/cc_230327/tcp-rl.cc.2.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/cc_230327/tcp-rl.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/cc_230327/tcp-rl.cc.3.o",
     "file": "../scratch/cc_230327/tcp-rl.cc"
   },
   {
@@ -6293,5 +6293,35 @@
     "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
     "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -std=c++17 -fstrict-aliasing -Wstrict-aliasing -fPIC -g -fstack-protector-strong -g -fwrapv -O2 -fvisibility=hidden -Wno-array-bounds -pthread -I. -Isrc/core/bindings -I/usr/include/python3.10 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 -DNS_DEPRECATED= -DNS3_DEPRECATED_H -DNS_DEPRECATED_3_35= -DNS3_DEPRECATED_H -DNS_DEPRECATED_3_34= -DNS3_DEPRECATED_H -DNDEBUG src/wimax/bindings/ns3module.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/src/wimax/bindings/ns3module.cc.7.o",
     "file": "src/wimax/bindings/ns3module.cc"
+  },
+  {
+    "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/current_version_backup/sim.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/current_version_backup/sim.cc.1.o",
+    "file": "../scratch/current_version_backup/sim.cc"
+  },
+  {
+    "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/current_version_backup/tcp-rl-env.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/current_version_backup/tcp-rl-env.cc.1.o",
+    "file": "../scratch/current_version_backup/tcp-rl-env.cc"
+  },
+  {
+    "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/current_version_backup/tcp-rl.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/current_version_backup/tcp-rl.cc.1.o",
+    "file": "../scratch/current_version_backup/tcp-rl.cc"
+  },
+  {
+    "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/train_cat_last_version/sim.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/train_cat_last_version/sim.cc.8.o",
+    "file": "../scratch/train_cat_last_version/sim.cc"
+  },
+  {
+    "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/train_cat_last_version/tcp-rl-env.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/train_cat_last_version/tcp-rl-env.cc.8.o",
+    "file": "../scratch/train_cat_last_version/tcp-rl-env.cc"
+  },
+  {
+    "directory": "/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++17 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_SEMAPHORE_H=1 -DHAVE_IF_TUN_H=1 -DHAVE_ZMQ=1 -DHAVE_PROTOBUF=1 ../scratch/train_cat_last_version/tcp-rl.cc -c -o/home/nxcl/cline/ns-allinone-3.35/ns-3.35/build/scratch/train_cat_last_version/tcp-rl.cc.8.o",
+    "file": "../scratch/train_cat_last_version/tcp-rl.cc"
   }
 ]

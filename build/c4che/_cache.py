@@ -15,7 +15,7 @@ CC_SRC_F = []
 CC_TGT_F = ['-c', '-o']
 CC_VERSION = ('11', '3', '0')
 CFLAGS_MACBUNDLE = ['-fPIC']
-CFLAGS_PYEMBED = ['-march=nocona', '-mtune=haswell', '-ftree-vectorize', '-fPIC', '-fstack-protector-strong', '-fno-plt', '-O3', '-ffunction-sections', '-isystem', '/home/nxcl/anaconda3/envs/backup_old_app/include', '-fdebug-prefix-map=/home/builder/ktietz/cos6/ci_cos6/python_1622833237666/work=/usr/local/src/conda/python-3.6.13', '-fdebug-prefix-map=/home/nxcl/anaconda3/envs/backup_old_app=/usr/local/src/conda-prefix', '-fuse-linker-plugin', '-ffat-lto-objects', '-flto-partition=none', '-flto', '-fwrapv', '-O3']
+CFLAGS_PYEMBED = ['-march=nocona', '-mtune=haswell', '-ftree-vectorize', '-fPIC', '-fstack-protector-strong', '-fno-plt', '-O3', '-ffunction-sections', '-isystem', '/home/nxcl/anaconda3/envs/cline/include', '-fdebug-prefix-map=/home/builder/ktietz/cos6/ci_cos6/python_1622833237666/work=/usr/local/src/conda/python-3.6.13', '-fdebug-prefix-map=/home/nxcl/anaconda3/envs/cline=/usr/local/src/conda-prefix', '-fuse-linker-plugin', '-ffat-lto-objects', '-flto-partition=none', '-flto', '-fwrapv', '-O3']
 CFLAGS_cshlib = ['-fPIC']
 COMPILER_CC = 'gcc'
 COMPILER_CXX = 'g++'
@@ -25,7 +25,7 @@ CXXDEFINES = ['_DEBUG']
 CXXFLAGS = ['-O0', '-ggdb', '-g3', '-Wall', '-Werror', '-std=c++17', '-fstrict-aliasing', '-Wstrict-aliasing']
 CXXFLAGS_MACBUNDLE = ['-fPIC']
 CXXFLAGS_PTHREAD = '-pthread'
-CXXFLAGS_PYEMBED = ['-march=nocona', '-mtune=haswell', '-ftree-vectorize', '-fPIC', '-fstack-protector-strong', '-fno-plt', '-O3', '-ffunction-sections', '-isystem', '/home/nxcl/anaconda3/envs/backup_old_app/include', '-fdebug-prefix-map=/home/builder/ktietz/cos6/ci_cos6/python_1622833237666/work=/usr/local/src/conda/python-3.6.13', '-fdebug-prefix-map=/home/nxcl/anaconda3/envs/backup_old_app=/usr/local/src/conda-prefix', '-fuse-linker-plugin', '-ffat-lto-objects', '-flto-partition=none', '-flto', '-fwrapv', '-O3']
+CXXFLAGS_PYEMBED = ['-march=nocona', '-mtune=haswell', '-ftree-vectorize', '-fPIC', '-fstack-protector-strong', '-fno-plt', '-O3', '-ffunction-sections', '-isystem', '/home/nxcl/anaconda3/envs/cline/include', '-fdebug-prefix-map=/home/builder/ktietz/cos6/ci_cos6/python_1622833237666/work=/usr/local/src/conda/python-3.6.13', '-fdebug-prefix-map=/home/nxcl/anaconda3/envs/cline=/usr/local/src/conda-prefix', '-fuse-linker-plugin', '-ffat-lto-objects', '-flto-partition=none', '-flto', '-fwrapv', '-O3']
 CXXFLAGS_cxxshlib = ['-fPIC']
 CXXLNK_SRC_F = []
 CXXLNK_TGT_F = ['-o']
@@ -90,13 +90,13 @@ HAVE___UINT128_T = 1
 HTMLDIR = '/usr/local/share/doc/ns'
 INCLUDEDIR = '/usr/local/include'
 INCLUDES_LIBXML2 = ['/usr/include/libxml2']
-INCLUDES_PYEMBED = ['/home/nxcl/anaconda3/envs/backup_old_app/include/python3.6m']
+INCLUDES_PYEMBED = ['/home/nxcl/anaconda3/envs/cline/include/python3.6m']
 INFODIR = '/usr/local/share/info'
 INT64X64_USE_128 = 1
 LIB = ['zmq', 'protobuf']
 LIBDIR = '/usr/local/lib'
 LIBEXECDIR = '/usr/local/libexec'
-LIBPATH_PYEMBED = ['/home/nxcl/anaconda3/envs/backup_old_app/lib/python3.6/config-3.6m-x86_64-linux-gnu', '/home/nxcl/anaconda3/envs/backup_old_app/lib']
+LIBPATH_PYEMBED = ['/home/nxcl/anaconda3/envs/cline/lib/python3.6/config-3.6m-x86_64-linux-gnu', '/home/nxcl/anaconda3/envs/cline/lib']
 LIBPATH_ST = '-L%s'
 LIB_BOOST = []
 LIB_LIBXML2 = ['xml2']
@@ -141,10 +141,10 @@ PYFLAGS = ''
 PYFLAGS_OPT = '-O'
 PYO = 1
 PYTAG = 'cpython-36'
-PYTHON = ['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3']
+PYTHON = ['/home/nxcl/anaconda3/envs/cline/bin/python3']
 PYTHONARCHDIR = '/usr/local/lib/python3.6/site-packages'
 PYTHONDIR = '/usr/local/lib/python3.6/site-packages'
-PYTHON_CONFIG = ['/home/nxcl/anaconda3/envs/backup_old_app/bin/python3-config']
+PYTHON_CONFIG = ['/home/nxcl/anaconda3/envs/cline/bin/python3-config']
 PYTHON_VERSION = '3.6'
 REQUIRED_BOOST_LIBS = []
 RPATH_ST = '-Wl,-rpath,%s'

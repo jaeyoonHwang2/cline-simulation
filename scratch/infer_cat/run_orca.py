@@ -4,6 +4,8 @@ import os
 import numpy as np
 import random
 import logging
+import socket
+
 from agent import Agent
 from cubic import CubicAgent
 from utils import Params
@@ -24,14 +26,15 @@ parser.add_argument('--task', type=int, required=True)
 global config
 config = parser.parse_args()
 
-# config.mode = 'inference'
-# config.role = 'actor'
-# config.task = 0
-
 if config.mode == 'inference':
     base_path = '../../../../../infer_learner'
 else:  # 'training
     base_path = '../../../../../train_learner'
+    HOST = '127.0.0.1'
+    PORT = 9999
+    actor_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    actor_socket.connect((HOST, PORT))
+    print("Actor socket connected to learner")
 
 # parameters from parser
 global params
@@ -100,16 +103,20 @@ with tf.Graph().as_default(), tf.device(local_job_device + '/cpu'):
 
         env = [TcpEnvWrapper(s_dim, params, use_normalizer=params.dict['use_normalizer']) for i in range(num_senders)]
         envNs3 = ns3env.Ns3Env(port=port, stepTime=stepTime, startSim=startSim, simSeed=12, simArgs=simArgs, debug=False)
+    
+    for i in range(params.dict['num_actors']):
+    
+        if is_actor_fn(i):
+    
+            a_s0 = tf.placeholder(tf.float32, shape=[s_dim], name='a_s0')
+            a_action = tf.placeholder(tf.float32, shape=[a_dim], name='a_action')
+            a_reward = tf.placeholder(tf.float32, shape=[1], name='a_reward')
+            a_s1 = tf.placeholder(tf.float32, shape=[s_dim], name='a_s1')
+            a_terminal = tf.placeholder(tf.float32, shape=[1], name='a_terminal')
+            a_buf = [a_s0, a_action, a_reward, a_s1, a_terminal]
 
-        a_s0 = tf.placeholder(tf.float32, shape=[s_dim], name='a_s0')
-        a_action = tf.placeholder(tf.float32, shape=[a_dim], name='a_action')
-        a_reward = tf.placeholder(tf.float32, shape=[1], name='a_reward')
-        a_s1 = tf.placeholder(tf.float32, shape=[s_dim], name='a_s1')
-        a_terminal = tf.placeholder(tf.float32, shape=[1], name='a_terminal')
-        a_buf = [a_s0, a_action, a_reward, a_s1, a_terminal]
-
-        with tf.device(shared_job_device):
-            actor_op.append(queue.enqueue(a_buf))
+            with tf.device(shared_job_device):
+                actor_op.append(queue.enqueue(a_buf))
 
     params.dict['ckptdir'] = os.path.join(base_path, params.dict['ckptdir'])
     print("## checkpoint dir:", params.dict['ckptdir'])
@@ -119,68 +126,89 @@ with tf.Graph().as_default(), tf.device(local_job_device + '/cpu'):
         print("\n# # # # # # Warning ! ! ! No checkpoint is loaded, use random model! ! ! # # # # # #\n")
 
     tfconfig = tf.ConfigProto(allow_soft_placement=True)
-    mon_sess = tf.train.SingularMonitoredSession(checkpoint_dir=params.dict['ckptdir'])
+    
+    if config.mode == 'inference':
+        mon_sess = tf.train.SingularMonitoredSession(
+            checkpoint_dir=params.dict['ckptdir'])
+    else:
+        mon_sess = tf.train.MonitoredTrainingSession(master=server.target,
+                save_checkpoint_secs=15,
+                save_summaries_secs=None,
+                save_summaries_steps=None,
+                is_chief=is_learner,
+                checkpoint_dir=params.dict['ckptdir'],
+                config=tfconfig,
+                hooks=None)
 
     agent.assign_sess(mon_sess)
+    
+    iteration = 0
 
-    # env[Uuid].reset
-    obs = envNs3.reset()
-    done = False
-    info = None
+    while True:  # training -> lots of episodes
 
-    slow_start = [True for i in range(num_senders)]
+        obs = envNs3.reset()
+        done = False
+        info = None
 
-    for i in range(num_senders):
-        env[i].states_and_reward_from_init()
-        env[i].init_state_history()
-        a_init = agent.get_action(env[i].s0_rec_buffer, not config.eval)
-        env[i].agent_action_to_alpha(a_init)
+        slow_start = [True for i in range(num_senders)]
 
-    while True:
+        for i in range(num_senders):
+            env[i].reset()
+            env[i].init_state_history()
+            a_init = agent.get_action(env[i].s0_rec_buffer, not config.eval)
+            env[i].agent_action_to_alpha(a_init)
 
-        Uuid = obs[0] - 1
+        while True:  # inference -> single episode
 
-        if not obs[11]:
-            slow_start[Uuid] = False
+            Uuid = obs[0] - 1
 
-        srtt_sec, min_rtt_us = env[Uuid].network_monitor_per_ack(obs)
+            if not obs[11]:
+                slow_start[Uuid] = False
 
+            srtt_sec, min_rtt_us = env[Uuid].network_monitor_per_ack(obs, iteration)
 
-        if env[Uuid].is_this_new_mtp():  # new MTP
-            env[Uuid].calculate_network_stats_per_mtp()
-            env[Uuid].print_network_status()
-            env[Uuid].calculate_new_timestamp()
+            if env[Uuid].is_this_new_mtp():  # new MTP
+                env[Uuid].calculate_network_stats_per_mtp()
+                env[Uuid].print_network_status()
+                env[Uuid].calculate_new_timestamp()
 
-            if not slow_start[Uuid]:  # no slow start
-                env[Uuid].epoch_count()
-                env[Uuid].states_and_reward_from_last_action()
-                env[Uuid].calculate_return()
-                env[Uuid].concate_new_state()
-                a1 = agent.get_action(env[Uuid].s1_rec_buffer, not config.eval)
-                fd = {a_s0: env[Uuid].s0_rec_buffer, a_action: env[Uuid].last_agent_decision, a_reward: np.array([env[Uuid].reward]),
-                      a_s1: env[Uuid].s1_rec_buffer, a_terminal: np.array([env[Uuid].terminal], np.float)}
-                if not config.eval:
-                    mon_sess.run(actor_op, feed_dict=fd)
-                env[Uuid].agent_action_to_alpha(a1)
-                env[Uuid].update_states_history()
-                env[Uuid].print_orca_status()
-                env[Uuid].reset_network_status()
+                if not slow_start[Uuid]:  # no slow start
+                    env[Uuid].epoch_count()
+                    env[Uuid].states_and_reward_from_last_action()
+                    env[Uuid].calculate_return()
+                    env[Uuid].concate_new_state()
+                    a1 = agent.get_action(env[Uuid].s1_rec_buffer, not config.eval)
+                    fd = {a_s0: env[Uuid].s0_rec_buffer, a_action: env[Uuid].last_agent_decision, a_reward: np.array([env[Uuid].reward]),
+                        a_s1: env[Uuid].s1_rec_buffer, a_terminal: np.array([env[Uuid].terminal], np.float)}
+                    if not config.eval:
+                        mon_sess.run(actor_op, feed_dict=fd)
+                    env[Uuid].agent_action_to_alpha(a1)
+                    env[Uuid].update_states_history()
+                    env[Uuid].print_orca_status()
+                    env[Uuid].reset_network_status()
+                else:
+                    env[Uuid].reset_network_status()
+            cubic_action = cubic_senders[Uuid].get_action(obs, srtt_sec, min_rtt_us)
+
+            if env[Uuid].epoch_for_this_epi:  # no slow start
+                orca_action = env[Uuid].orca_over_cubic(cubic_action)
             else:
-                env[Uuid].reset_network_status()
-        cubic_action = cubic_senders[Uuid].get_action(obs, srtt_sec, min_rtt_us)
-        if env[Uuid].epoch_for_this_epi:  # no slow start
-            orca_action = env[Uuid].orca_over_cubic(cubic_action)
-        else:
-            orca_action = cubic_action
+                orca_action = cubic_action
 
-        print(Uuid, obs[2] / 1000000, "CUBIC_CWND",cubic_action[1])
-        print(Uuid, obs[2] / 1000000, "ORCA_ALPHA", env[Uuid].alpha)
-        print(Uuid, obs[2] / 1000000, "ORCA_CWND", orca_action[1])
+            print(Uuid, obs[2] / 1000000 + iteration * params.dict['simTime'], "CUBIC_CWND",cubic_action[1])
+            print(Uuid, obs[2] / 1000000 + iteration * params.dict['simTime'], "ORCA_ALPHA", env[Uuid].alpha)
+            print(Uuid, obs[2] / 1000000 + iteration * params.dict['simTime'], "ORCA_CWND", orca_action[1])
 
-        obs, reward, done, info = envNs3.step(orca_action)
+            obs, reward, done, info = envNs3.step(orca_action)
 
-        if done:
-            done = False
-            info = None
-            print("An episode is over")
-            break
+            if done:
+                done = False
+                info = None
+                print("An episode is over")
+                iteration += 1
+                break
+        
+        if config.mode == 'inference':
+                
+                print("The run is completely over")
+                break
