@@ -54,7 +54,8 @@ class CubicAgent:
         return actions
 
     def print_decisions(self):
-        print(self.Uuid, self.simTime_us * constants.US_TO_SEC, "cwnd", self.last_cwnd_decision)
+        # print(self.Uuid, self.simTime_us * constants.US_TO_SEC, "cwnd", self.last_cwnd_decision)
+        pass
 
     def slow_start(self):
         self.cwnd_increase_ss()

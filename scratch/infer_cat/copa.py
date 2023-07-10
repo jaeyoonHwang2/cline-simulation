@@ -19,7 +19,7 @@ SOFTWARE.
 '''
 
 from collections import deque
-import copa_constant
+import constant
 
 class copa_agent:
 
@@ -56,7 +56,7 @@ class copa_agent:
         self.current_rate = 0
         self.last_update = 0
         self.cwnd_pkts = initial_cwnd
-        self.cwnd_bytes = initial_cwnd * copa_constant.SEGMENT_SIZE
+        self.cwnd_bytes = initial_cwnd * constant.SEGMENT_SIZE
         self.pacing_rate_mbps = 0        
         self.last_cwnd_pkts = 0       
         self.action = [] 
@@ -74,7 +74,7 @@ class copa_agent:
         self.min_rtt_ms = self.min_rtt_us / 1000
         self.min_rtt_sec = self.min_rtt_us / 1000000
 
-        if (self.srtt_us): self.srtt_us = (1 - copa_constant.G) * self.srtt_us + copa_constant.G * obs[9]  
+        if (self.srtt_us): self.srtt_us = (1 - constant.G) * self.srtt_us + constant.G * obs[9]
         else: self.srtt_us = obs[9] 
         self.srtt_ms = self.srtt_us / 1000
         self.srtt_sec = self.srtt_us / 1000000
@@ -82,26 +82,26 @@ class copa_agent:
 
     def monitor_network(self, obs, Uuid):
         
-        self.new_valid_timestamp = (obs[7] & (int(obs[2] / copa_constant.TIMESTAMP_UNIT_US) != self.timestamp))
+        self.new_valid_timestamp = (obs[7] & (int(obs[2] / constant.TIMESTAMP_UNIT_US) != self.timestamp))
 
         if (self.new_valid_timestamp):
         
-            if not (self.timestamp): self.timestamp = int(obs[2] / copa_constant.TIMESTAMP_UNIT_US) - 1        
-            self.interval_cnt = int(obs[2] / copa_constant.TIMESTAMP_UNIT_US) - self.timestamp
+            if not (self.timestamp): self.timestamp = int(obs[2] / constant.TIMESTAMP_UNIT_US) - 1
+            self.interval_cnt = int(obs[2] / constant.TIMESTAMP_UNIT_US) - self.timestamp
 
-            self.throughput_mbps = min(self.ack_count * 1500 * 8 / (self.interval_cnt * (copa_constant.TIMESTAMP_UNIT_US / (1000 * 1000))) / (1024 * 1024), self.max_bw_mbps)
-            self.loss_rate_mbps = self.loss_count * 1500 * 8 / (self.interval_cnt * (copa_constant.TIMESTAMP_UNIT_US / (1000 * 1000))) / (1024 * 1024) 
+            self.throughput_mbps = min(self.ack_count * 1500 * 8 / (self.interval_cnt * (constant.TIMESTAMP_UNIT_US / (1000 * 1000))) / (1024 * 1024), self.max_bw_mbps)
+            self.loss_rate_mbps = self.loss_count * 1500 * 8 / (self.interval_cnt * (constant.TIMESTAMP_UNIT_US / (1000 * 1000))) / (1024 * 1024)
 
             for i in range(self.interval_cnt):
                 
-                print (Uuid, (self.timestamp + 1 + i) * copa_constant.BASE_RTT, "throughput", self.throughput_mbps)
-                print (Uuid, (self.timestamp + 1 + i) * copa_constant.BASE_RTT, "loss_rate", self.loss_rate_mbps)
-                print (Uuid, (self.timestamp + 1 + i) * copa_constant.BASE_RTT, "srtt", self.srtt_ms)
+                print (Uuid, (self.timestamp + 1 + i) * constant.BASE_RTT, "throughput", self.throughput_mbps)
+                print (Uuid, (self.timestamp + 1 + i) * constant.BASE_RTT, "loss_rate", self.loss_rate_mbps)
+                print (Uuid, (self.timestamp + 1 + i) * constant.BASE_RTT, "srtt", self.srtt_ms)
 
             self.ack_count = 0
             self.loss_count = 0
 
-            self.timestamp = int(obs[2] / copa_constant.TIMESTAMP_UNIT_US) 
+            self.timestamp = int(obs[2] / constant.TIMESTAMP_UNIT_US)
 
         else: 
             
@@ -165,7 +165,7 @@ class copa_agent:
 
     def calculate_action(self):
         
-        self.cwnd_bytes = int(max(2, self.cwnd_pkts)) * copa_constant.SEGMENT_SIZE
+        self.cwnd_bytes = int(max(2, self.cwnd_pkts)) * constant.SEGMENT_SIZE
         self.pacing_rate_mbps = int(2 * (self.cwnd_bytes / self.standing_rtt_sec) * 8)
         self.action = [self.pacing_rate_mbps, self.cwnd_bytes]
 

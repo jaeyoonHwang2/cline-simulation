@@ -306,11 +306,12 @@ class Agent():
 
         fd = {self.s0: create_input_op_shape(s, self.s0), self.is_training:False}
 
-        action = self.sess.run([self.actor_out], feed_dict=fd)
+        action_ = self.sess.run([self.actor_out], feed_dict=fd)
         if use_noise:
-            noise = self.actor_noise(action[0])
-            action += noise
-            action = np.clip(action, self.action_range[0], self.action_range[1])
+            noise = self.actor_noise(action_[0])
+            action_ += noise
+            action_ = np.clip(action_, self.action_range[0], self.action_range[1])
+        action = action_[0][0]
         return action
 
     def get_q(self, s, a):

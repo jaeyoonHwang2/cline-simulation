@@ -122,7 +122,7 @@ class MonitoringAgent:
         else:
             self.min_rtt_us = min(self.min_rtt_us, self.lastRtt_us)
 
-    def calculate_srtt(self):   
+    def calculate_srtt(self):
         if self.srtt_us:
             self.srtt_us = (1 - constants.G) * self.srtt_us + constants.G * self.lastRtt_us
         else:

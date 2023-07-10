@@ -145,7 +145,7 @@ int main (int argc, char *argv[])
   uint32_t openGymPort = 5555;
   double tcpEnvTimeStep = 0.1;
 
-  uint32_t nLeaf = 3;
+  uint32_t nLeaf = 1;
   std::string transport_prot = "TcpRl";
   double error_p = 0.0;
   std::string bottleneck_bandwidth = "50Mbps";//"130Mbps";//"2Mbps";//
@@ -309,10 +309,10 @@ int main (int argc, char *argv[])
   //devices2 = d.GetRibottleneckRouterght()->GetDevice(0);  // 0 is the router
 
   //////
-  NetDeviceContainer *bottleneckRouter;
-  bottleneckRouter = &d.m_routerDevices;
-  bottleneckRouter->Get(0)->SetAttribute  ("DataRate", StringValue ("50Mbps"));
-  bottleneckRouter->Get(1)->SetAttribute  ("DataRate", StringValue ("50Mbps"));
+  //NetDeviceContainer *bottleneckRouter;
+  //bottleneckRouter = &d.m_routerDevices;
+  //bottleneckRouter->Get(0)->SetAttribute  ("DataRate", StringValue ("50Mbps"));
+  //bottleneckRouter->Get(1)->SetAttribute  ("DataRate", StringValue ("50Mbps"));
 
 
   // Install IP stack
@@ -425,8 +425,8 @@ int main (int argc, char *argv[])
   Simulator::Stop (Seconds (stop_time));
   ThroughputMonitor(&flowHelper, allMon);
   /////
-  Simulator::Schedule(Seconds(30), &ChangeBW, bottleneckRouter); //change pointToPoint
-  //Simulator::Schedule(Seconds(0.04),&ThroughputMonitor,&flowHelper, allMon);
+  //Simulator::Schedule(Seconds(30), &ChangeBW, bottleneckRouter); //change pointToPoint
+  Simulator::Schedule(Seconds(0.04),&ThroughputMonitor,&flowHelper, allMon);
   
   Simulator::Run ();
 

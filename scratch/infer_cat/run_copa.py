@@ -1,7 +1,7 @@
 import logging
 import tensorflow as tf
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 from ns3gym import ns3env
 from copa import copa_agent
 

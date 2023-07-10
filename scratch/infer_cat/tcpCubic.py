@@ -1,4 +1,11 @@
+from random import randrange
 from tcp_base import TcpEventBased
+
+__author__ = "Piotr Gawlowicz"
+__copyright__ = "Copyright (c) 2018, Technische Universität Berlin"
+__version__ = "0.1.0"
+__email__ = "gawlowicz@tkn.tu-berlin.de"
+
 
 class TcpCubic(TcpEventBased):
     """docstring for TcpCubic"""
@@ -7,41 +14,17 @@ class TcpCubic(TcpEventBased):
         self.C = 0.4 # scaling constant
         self.beta = 717 / 1024 # multiplicative decrease factor
         self.cnt = 0
+        self.max_cnt = 0
         self.cWnd_cnt = 0
         self.epoch_start = 0
         self.origin_point = 0
         self.K = 0
         self.T = 0
-        self.max_cWnd = 1000000000 
+        self.max_cWnd = 1000000000 # window size where loss has occurred
         self.target = 0
-        self.slow_start = True
-        self.last_cubic_cwnd = 90
-        self.rtt_loss_signal = False
-        self.loss_available = True
-        self.last_loss_time = 0
-        self.loss_event = False
-        self.cubic_cwnd = 90
-        self.cubic_pacing_rate = 90
+        self.beforeFirstLoss = True
+        self.save_new_cWnd = 90
 
-    def reset(self):
-        self.C = 0.4 # scaling constant
-        self.beta = 717 / 1024 # multiplicative decrease factor
-        self.cnt = 0
-        self.cWnd_cnt = 0
-        self.epoch_start = 0
-        self.origin_point = 0
-        self.K = 0
-        self.T = 0
-        self.max_cWnd = 1000000000 
-        self.target = 0
-        self.slow_start = True
-        self.last_cubic_cwnd = 90
-        self.rtt_loss_signal = False
-        self.loss_available = True
-        self.last_loss_time = 0
-        self.loss_event = False
-        self.cubic_cwnd = 90
-        self.loss_event = False
 
     def get_action(self, obs, srtt, dMin, done, info):
         # unique socket ID
@@ -59,7 +42,7 @@ class TcpCubic(TcpEventBased):
         # segment size
         segmentSize = obs[6]
         # number of acked segments
-        segments_acked = obs[7]
+        segmentsAcked = obs[7]
         # estimated bytes in flight
         bytesInFlight  = obs[8]
         # last estimation of RTT
@@ -92,48 +75,64 @@ class TcpCubic(TcpEventBased):
         # 8 CA_EVENT_NON_DELAYED_ACK,
         caEvent = obs[13]
 
-        mss_to_mtu = (obs[6] + 60) / obs[6]
+        new_cWnd = segmentSize
+        new_pacingRate = segmentSize
         
-        buffer_bdp = 1
-        self.rtt_loss_signal = obs[9] > 20000 * (1 + buffer_bdp)
-        self.loss_available = self.last_loss_time + 20000 < simTime_us
-        self.loss_event = calledFunc == 0
+        #print (srtt)
+        #print (obs[11], obs[12], obs[13])
 
-        if (segments_acked):
+        if (segmentsAcked):
+            if (self.beforeFirstLoss): # IF NO LOSS HAS EVER HAPPENED, slowStart
 
-            if (self.rtt_loss_signal & self.loss_available):
+                if (calledFunc == 0): # packetLoss
+                    self.epoch_start = 0
+                    self.max_cWnd = self.save_new_cWnd
+                    # self.max_cWnd = cWnd
+                    new_cWnd = int(max(self.save_new_cWnd * self.beta, 2 * segmentSize))
+                    self.epoch_start = 0   
+                    self.beforeFirstLoss = False   
+
+                else: # slowStart
+                    new_cWnd = int(cWnd + segmentSize)
+                    #new_pacingRate = ssThresh #whyWillTheSimulationNotProceedIfnew_pacingRateIsTheAbove?
+
+            else: # AFTER LOSS HAS HAPPENED, slowStart SHOULD NOT APPEAR AND Orca CWND REDUCTION SHOULD BE COUNTED
+                # if loss: reduce cWnd
+                # if cwnd <= save_cwnd (orca reduction) OR loss: epoch_start = 0 
+                #### what if orca increment?            
+                if (calledFunc == 0): # packetLoss 
+
+                    self.max_cWnd = self.save_new_cWnd
+                    new_cWnd = int(max(self.save_new_cWnd * self.beta, 2 * segmentSize))
+                    self.epoch_start = 0                
+
                 
-                self.loss_event = True
-                self.last_loss_time = simTime_us
+                else: # congestionAvoidance
+                    
+                    # if new cWnd is smaller than last cubic cWnd decision, 
+                    #if (cWnd_ < self.save_new_cWnd): self.epoch_start = simTime_us
 
-            if (self.loss_event): 
+                    #if ((self.epoch_start <= 0) | (cWnd != self.save_new_cWnd)): 
+                    if (self.epoch_start <= 0): # Orca just change cwnd
+                    # packetLoss (before) or OrcaCwndChange (now)
 
-                self.epoch_start = 0
-                self.max_cWnd = self.last_cubic_cwnd
-                self.cubic_cwnd = int(max(self.last_cubic_cwnd * self.beta, 2 * segmentSize))
-                self.slow_start = False
-
-            else:                
-
-                if (self.slow_start): # slow start phase
-                                                    
-                    self.cubic_cwnd = int(cWnd + segmentSize)                
-
-                else: # congestion avoidance phase
-
-                    if (self.epoch_start <= 0): 
+                        #if (cWnd != self.save_new_cWnd):
+                        #    self.max_cWnd = self.save_new_cWnd
 
                         self.epoch_start = simTime_us
+                        # ackCnt = 1
+                        # tcpCwnd = cWnd
 
-                        if (cWnd < self.max_cWnd): 
+                        if (cWnd < self.max_cWnd): # cWnd is reduced
                             self.K = ((self.max_cWnd - cWnd) / (segmentSize * self.C))**(1/3)  
                             self.origin_point = self.max_cWnd / segmentSize
 
-                        else: 
+                        else: # cWnd is not reduced
                             self.K = 0
                             self.origin_point = cWnd / segmentSize
                     
                     t = simTime_us + dMin - self.epoch_start            
+                    #new_cWnd = segmentSize * (self.origin_point + self.C * (((t/1000000)-self.K)**3))
                     self.target = self.origin_point + self.C * (((t/1000000)-self.K)**3)
 
                     if (self.target > (cWnd / segmentSize)): self.cnt = (cWnd / segmentSize) / (self.target-(cWnd / segmentSize))
@@ -141,22 +140,25 @@ class TcpCubic(TcpEventBased):
                     
                     if (self.cWnd_cnt > self.cnt): 
                         
-                        self.cubic_cwnd = cWnd + segmentSize
+                        new_cWnd = cWnd + segmentSize
                         self.cWnd_cnt = 0
 
                     else: 
 
-                        self.cubic_cwnd = cWnd
+                        new_cWnd = cWnd
                         self.cWnd_cnt += 1
 
-        # clamp maximum cwnd 
-        if (self.cubic_cwnd < 180): self.cubic_cwnd = 180
-        if (self.slow_start): self.cubic_pacing_rate = int(2 * self.cubic_cwnd * 8 / (srtt / 1000) * mss_to_mtu)
-        else: self.cubic_pacing_rate = int(1.2 * self.cubic_cwnd * 8 / (srtt / 1000) * mss_to_mtu)
+        # clamp the maximum cwnd to not allow too much packet drops 
+        #if (new_cWnd > 285000): new_cWnd = 285000
+        if (new_cWnd < 180): new_cWnd = 180
+        if (self.beforeFirstLoss & calledFunc): new_pacingRate = int(2 * new_cWnd * 8 / (srtt / 1000) * (obs[6] + 60) / obs[6]) # pacingRate: mss -> mtu
+        else: new_pacingRate = int(1.2 * new_cWnd * 8 / (srtt / 1000) * (obs[6] + 60) / obs[6]) # pacingRate: mss -> mtu
 
-        self.last_cubic_cwnd = self.cubic_cwnd
-        self.last_cubic_pacing_rate = self.cubic_pacing_rate
+        self.save_new_cWnd = new_cWnd
+        self.save_new_pacingRate = new_pacingRate
         
-        actions = [self.cubic_pacing_rate, self.cubic_cwnd]      
- 
-        return actions, self.slow_start
+        actions = [new_pacingRate, new_cWnd]
+        
+        # Question 1. any loss result in zero cWnd, why the fuck?
+        # Qeustion 2. activating slowStart result in         
+        return actions

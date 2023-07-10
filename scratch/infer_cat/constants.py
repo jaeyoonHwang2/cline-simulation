@@ -1,5 +1,6 @@
 # monitor const
 G = 1 / 8
+MS_TO_SEC = 1 / 1000
 US_TO_MS = 1 / 1000
 US_TO_SEC = 1 / (1000 * 1000)
 TIMESTAMP_UNIT_US = 20000
@@ -11,6 +12,7 @@ SEGMENT_SIZE = 90
 
 # ORCA const
 MTP = 20000
+RET_SMOOTHING_FACTOR = 0.02
 
 # COPA const
 BASE_RTT = 0.02
