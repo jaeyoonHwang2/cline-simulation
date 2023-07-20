@@ -49,6 +49,13 @@ class CubicAgent:
 
         self.last_cwnd_decision = self.cwnd_decision
         self.print_decisions()
+
+        if self.pacing_rate_decision > 1000000000:
+            self.pacing_rate_decision = 1000000000
+        
+        if self.cwnd_decision > 20000000:
+            self.cwnd_decision = 20000000
+
         actions = [self.pacing_rate_decision, self.cwnd_decision]
 
         return actions

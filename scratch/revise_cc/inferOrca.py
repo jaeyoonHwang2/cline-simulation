@@ -40,7 +40,7 @@ tf.get_logger().setLevel(logging.ERROR)
 parser = argparse.ArgumentParser()
 parser.add_argument('--load', action='store_true', default=False, help='default is  %(default)s')
 parser.add_argument('--eval', action='store_true', default=True, help='default is  %(default)s')
-base_path = '~/infer_learner'
+base_path = '../../../../../infer_learner'
 job_name = 'actor'  
 
 

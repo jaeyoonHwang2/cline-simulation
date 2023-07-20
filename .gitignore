@@ -1,0 +1,6 @@
+# Ignore all files in the "build" directory
+/scratch/*
+
+# Ignore all files in the "logs" directory and its subdirectories
+!/scratch/actor/*
+

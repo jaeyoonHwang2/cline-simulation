@@ -335,6 +335,12 @@ class TcpEnvWrapper(TcpEventBased):
         self.action[1] = int(cubic_action[1] * self.alpha)
         self.action[0] = int(1.2 * self.action[1] * constants.BYTE_TO_BITS / (self.srtt_ms / 1000) * (self.obs[6] + constants.HEADER_SIZE) / self.obs[6])
 
+        if self.action[0] > 1000000000:
+            self.action[0] = 1000000000
+        
+        if self.action[1] > 20000000:
+            self.action[1] = 20000000
+            
         return self.action
     
     def set_token(self):

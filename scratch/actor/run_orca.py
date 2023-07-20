@@ -23,12 +23,11 @@ parser.add_argument('--mode', type=str, choices=['inference', 'training'], requi
 parser.add_argument('--task', type=int, required=True)
 
 # parameters for config
-sim_time = 20
-start_sim = 0.0001
-step_time = 0.0001
-
 global config
 config = parser.parse_args()
+
+start_sim = 0.0001
+step_time = 0.0001
 
 is_eval = config.mode == 'inference'
 
@@ -42,16 +41,18 @@ else:  # 'training
     actor_socket.connect((HOST, PORT))
     print("Actor socket connected to learner")
 
-port = 5000 + config.task
+port = 5001 + config.task
 
 # parameters from parser
 global params
 params = Params(os.path.join(base_path, 'params.json'))
 
 if config.mode == 'inference':
-    simArgs = {"--duration": sim_time, }
+    sim_time = 120
 else:
-    simArgs = {"--duration": params.dict['simTime'], }
+    sim_time = params.dict['simTime']
+    
+simArgs = {"--duration": sim_time, }
 
 # monitoring variables
 num_senders = 1
@@ -220,7 +221,7 @@ with tf.Graph().as_default(), tf.device(local_job_device + '/cpu'):
                 cubic_senders[Uuid].orca_cwnd_is_cubic_last_cwnd(orca_action[1])
             else:
                 orca_action = cubic_action
-
+            
             obs, reward, done, info = envNs3.step(orca_action)
 
             if done:
