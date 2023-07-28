@@ -355,7 +355,7 @@ TcpEventGymEnv::GetSsThresh (Ptr<const TcpSocketState> tcb, uint32_t bytesInFlig
   else {
     m_new_ssThresh = 180;
   }
-  // m_new_ssThresh = 180;
+  m_new_ssThresh = 180;
   //m_bytesInFlight
   Notify();
   NS_LOG_UNCOND("Loss signal");

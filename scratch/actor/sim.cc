@@ -145,10 +145,10 @@ int main (int argc, char *argv[])
   uint32_t openGymPort = 5555;
   double tcpEnvTimeStep = 0.1;
 
-  uint32_t nLeaf = 1;
+  uint32_t nLeaf = 2;
   std::string transport_prot = "TcpRl";
   double error_p = 0.0;
-  std::string bottleneck_bandwidth = "50Mbps";//"130Mbps";//"2Mbps";//
+  std::string bottleneck_bandwidth = "5Mbps";//"130Mbps";//"2Mbps";//
   std::string bottleneck_delay = "0.001ms";
   std::string access_bandwidth = "20000Mbps";//"10Mbps";//
   std::string access_delay = "5ms";
@@ -391,7 +391,7 @@ int main (int argc, char *argv[])
 
   for (uint32_t i = 0; i < nLeaf; ++i)
   {
-  start_t[i] = start_time + 0.001 + 10 * i;
+  start_t[i] = start_time + 0.001 + 1 * i;
   stop_t[i] = stop_time - 0.1;
   }
   //////
